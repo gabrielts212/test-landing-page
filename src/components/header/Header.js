@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Logoheader from '@/components/assets/logoheader.png';
 import Image from 'next/image';
 import { useState } from 'react';
 
@@ -10,10 +9,15 @@ const Header = () => {
     <header className="bg-black text-white shadow-md">
       <div className="container mx-auto flex flex-wrap items-center justify-between py-4 px-6">
         <div className="flex items-center">
-        <Link href="/" passHref>
-          <Image src={Logoheader} alt="Logo" />
-          </Link>
-      
+          {/* <Link href="/" passHref>
+            <image 
+              src="/assets/logoheader.png" 
+              alt="Logo" 
+              width={50} 
+              height={50} 
+       
+            />
+          </Link> */}
         </div>
         <div className="block lg:hidden">
           <button
@@ -43,12 +47,11 @@ const Header = () => {
           </Link>
         </nav>
         <div className={`lg:flex lg:items-center lg:space-x-4 ${isOpen ? 'block' : 'hidden'} w-full lg:w-auto mt-4 lg:mt-0`}>
-
-        <Link href="/loginpage" passHref>
-          <button className="block lg:inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">LOG IN</button>
+          <Link href="/loginpage" passHref>
+            <button className="block lg:inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-full">LOG IN</button>
           </Link>
           <Link href="/registerpage" passHref>
-          <button className="block lg:inline-block border border-green-500 text-green-500 hover:text-green-400 hover:border-green-400 font-bold py-2 px-4 rounded-full">SIGN IN</button>
+            <button className="block lg:inline-block border border-green-500 text-green-500 hover:text-green-400 hover:border-green-400 font-bold py-2 px-4 rounded-full">SIGN IN</button>
           </Link>
         </div>
       </div>

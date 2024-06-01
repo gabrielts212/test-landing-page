@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Logoheader from '@/components/assets/logoheader.png';
+// import Logoheader from '@/components/assets/logoheader.png';
 import Image from 'next/image';
 const Footer = () => {
   return (
@@ -8,9 +8,15 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <div className="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6">
           <div >
-        <Link href="/" passHref>
-          <Image src={Logoheader} alt="Logo" />
-          </Link>
+        {/* <Link href="/" passHref>
+        <image 
+              src="/assets/logoheader.png" 
+              alt="Logo" 
+              width={50} 
+              height={50} 
+              
+            />
+          </Link> */}
       
         </div>
             <nav className="flex space-x-4">
