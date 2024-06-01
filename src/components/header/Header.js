@@ -5,6 +5,9 @@ import { useState } from 'react';
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+
+
+  
   return (
     <header className="bg-black text-white shadow-md">
       <div className="container mx-auto flex flex-wrap items-center justify-between py-4 px-6">
