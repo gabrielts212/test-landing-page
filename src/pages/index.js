@@ -1,12 +1,12 @@
-import Header from "@/components/header/Header";
-import Teste from "@/components/teste/teste";
-// import Footer from "../components/footer/Footer";
+import Header from "@/components/header/header";
+
+import Footer from "../components/footer/footer";
 export default function Home() {
   return (
     <div>
-      {/* <Header /> */}
-      {/* <Footer /> */}
-      <Teste/>
+      <Header />
+      <Footer />
+    
     </div>
   );
 }

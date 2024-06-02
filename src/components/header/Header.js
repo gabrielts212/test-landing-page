@@ -1,24 +1,21 @@
+// components/Header.js
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 
-const Header = () => {
+const Header = ({ title }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-
-
-  
   return (
     <header className="bg-black text-white shadow-md">
       <div className="container mx-auto flex flex-wrap items-center justify-between py-4 px-6">
         <div className="flex items-center">
           {/* <Link href="/" passHref>
-            <image 
+            <Image 
               src="/assets/logoheader.png" 
               alt="Logo" 
               width={50} 
               height={50} 
-       
             />
           </Link> */}
         </div>
