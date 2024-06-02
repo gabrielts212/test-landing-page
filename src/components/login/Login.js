@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { setCookie } from "cookies-next";
-import { useRouter } from "next/router";
-
+import { useState, useEffect } from 'react';
+import { setCookie } from 'cookies-next';
+import { useRouter } from 'next/router';
+import { loginWithMicrosoft, handleMicrosoftCallback } from '../../pages/api/lib/auth';
+// import msalInstance from '../../pages/msalConfig';
 const Login = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -9,6 +10,24 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (code) {
+      setLoading(true);
+      handleMicrosoftCallback(code)
+        .then(data => {
+          setCookie('authorization', data.token);
+          router.push('/');
+        })
+        .catch(error => {
+          console.error('Authentication failed:', error);
+          setError('Authentication failed');
+          setLoading(false);
+        });
+    }
+  }, [router]);
 
   const handleFormEdit = (event, name) => {
     setFormData({
@@ -80,6 +99,12 @@ const Login = () => {
             Entrar
           </button>
         </form>
+        <button 
+          onClick={loginWithMicrosoft}
+          className="bg-blue-500 text-white w-full p-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500 mt-4"
+        >
+          Entrar com Microsoft
+        </button>
         <a
           href="/registerpage"
           className="block mt-4 text-green-500 hover:text-green-400 text-base"
