@@ -1,33 +1,17 @@
-import { useState, useEffect } from 'react';
-import { setCookie } from 'cookies-next';
+import React, { useState } from 'react';
+import { useMsal } from '@azure/msal-react';
 import { useRouter } from 'next/router';
-import { loginWithMicrosoft, handleMicrosoftCallback } from '../../pages/api/lib/auth';
-// import msalInstance from '../../pages/msalConfig';
+import { setCookie } from 'cookies-next';
+
 const Login = () => {
+  const { instance } = useMsal();
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     name: "",
     password: "",
   });
   const [error, setError] = useState("");
-  const router = useRouter();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      setLoading(true);
-      handleMicrosoftCallback(code)
-        .then(data => {
-          setCookie('authorization', data.token);
-          router.push('/');
-        })
-        .catch(error => {
-          console.error('Authentication failed:', error);
-          setError('Authentication failed');
-          setLoading(false);
-        });
-    }
-  }, [router]);
 
   const handleFormEdit = (event, name) => {
     setFormData({
@@ -51,6 +35,18 @@ const Login = () => {
     } catch (err) {
       setError(err.message);
     }
+  };
+
+  const handleLogin = () => {
+    instance.loginPopup({
+      scopes: ['openid', 'profile', 'User.Read'],
+    }).then(() => {
+      if (instance.getAllAccounts().length > 0) {
+        router.push('/registerpage');
+      }
+    }).catch(e => {
+      console.error(e);
+    });
   };
 
   return (
@@ -100,7 +96,7 @@ const Login = () => {
           </button>
         </form>
         <button 
-          onClick={loginWithMicrosoft}
+           onClick={handleLogin}
           className="bg-blue-500 text-white w-full p-3 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-500 mt-4"
         >
           Entrar com Microsoft

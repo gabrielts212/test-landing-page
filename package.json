@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@azure/msal-browser": "^3.15.0",
+    "@azure/msal-react": "^2.0.17",
     "cookie": "^0.6.0",
     "cookies-next": "^4.2.1",
     "jsonwebtoken": "^9.0.2",

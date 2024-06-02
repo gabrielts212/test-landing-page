@@ -2,8 +2,8 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 
 const MICROSOFT_CLIENT_ID = '14f63b39-4241-4173-84e2-9c632e81ab64';
-const MICROSOFT_CLIENT_SECRET = 'your-microsoft-client-secret';
-const JWT_SECRET = 'awda45dw4a4d4a64wd6d5a4w';
+const MICROSOFT_CLIENT_SECRET = '0ddc7c07-937a-4989-8eb9-cb2787b8421c';
+const JWT_SECRET = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9'; 
 const REDIRECT_URI = 'http://localhost:3000/api/auth/microsoft/callback';
 
 export default async function handler(req, res) {
@@ -14,7 +14,6 @@ export default async function handler(req, res) {
   const { code } = req.body;
 
   try {
-   
     const tokenResponse = await axios.post(
       `https://login.microsoftonline.com/common/oauth2/v2.0/token`,
       new URLSearchParams({
@@ -29,7 +28,6 @@ export default async function handler(req, res) {
 
     const { access_token } = tokenResponse.data;
 
-   
     const userResponse = await axios.get(
       'https://graph.microsoft.com/v1.0/me',
       { headers: { Authorization: `Bearer ${access_token}` } }
@@ -37,7 +35,6 @@ export default async function handler(req, res) {
 
     const user = userResponse.data;
 
-  
     const token = jwt.sign(
       { id: user.id, email: user.userPrincipalName, name: user.displayName },
       JWT_SECRET,

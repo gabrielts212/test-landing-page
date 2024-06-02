@@ -1,17 +1,11 @@
-import { PublicClientApplication } from '@azure/msal-browser';
+import { PublicClientApplication } from "@azure/msal-browser";
 
 const msalConfig = {
   auth: {
-    clientId: 'your-microsoft-client-id',
+    clientId: "14f63b39-4241-4173-84e2-9c632e81ab64",
     authority: 'https://login.microsoftonline.com/common',
-    redirectUri: 'http://localhost:3000',
-  },
-  cache: {
-    cacheLocation: 'localStorage',
-    storeAuthStateInCookie: true,
+    redirectUri: "http://localhost:3000/api/auth/microsoft/callback",
   },
 };
 
-const msalInstance = new PublicClientApplication(msalConfig);
-
-export default msalInstance;
+export const msalInstance = new PublicClientApplication(msalConfig);
