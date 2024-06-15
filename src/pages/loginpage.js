@@ -1,4 +1,4 @@
-import Login from "@/components/login/login";
+import Login from "../components/login/Login";
 import Header from '../components/header/header';
 import Headercomponent from '../components/headercomponent/headercomponent';
 
@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      {/* <Headercomponent HeaderComponent={Header} headerProps={headerProps} /> */}
+      <Header  />
       
       <Login />
     </div>
