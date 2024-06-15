@@ -1,6 +1,6 @@
 // components/Header.js
 import Link from 'next/link';
-import Image from 'next/image';
+
 import { useState } from 'react';
 
 const Header = ({ title }) => {
@@ -10,14 +10,7 @@ const Header = ({ title }) => {
     <header className="bg-black text-white shadow-md">
       <div className="container mx-auto flex flex-wrap items-center justify-between py-4 px-6">
         <div className="flex items-center">
-          {/* <Link href="/" passHref>
-            <Image 
-              src="/assets/logoheader.png" 
-              alt="Logo" 
-              width={50} 
-              height={50} 
-            />
-          </Link> */}
+         
         </div>
         <div className="block lg:hidden">
           <button
